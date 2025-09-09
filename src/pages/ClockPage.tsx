@@ -1,31 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type JSX } from "react";
 import Button from "../components/Button";
 import { useStateContext } from "../utils/useStateObj";
-import Input from "../components/Input";
 import { useLoaderData, useParams } from "react-router-dom";
 import type Cities from "../interfaces/Cities";
 import citiesLoader from "../utils/citiesLoader";
-import Clock from "../components/Clock";
-
-DigitalClockPage.route = {
+import DigitalClock from "../components/DigitalClock";
+import AnalogClock from "../components/AnalogClock";
+import Settings from "../components/Settings";
+import useBackground from "../utils/useBackground";
+import "./css/clockpage.css";
+// route definition
+ClockPage.route = {
   path: "/Clock/:timeZone/*",
   index: 3,
   loader: citiesLoader,
 };
 
-function DigitalClockPage() {
-  const [
-    {
-      textColor,
-      borderColor,
-      backgroundColor,
-      selectedTZ,
-      twelveHour,
-      isDigital,
-    },
-    setState,
-  ] = useStateContext();
+function ClockPage(): JSX.Element {
+  const [{ selectedTZ, isDigital }, setState] = useStateContext();
   const [isOpen, setIsOpen] = useState(false);
+
+  // Type assertion for selected city/timezone and is12HourPreferred to enable proper TypeScript typing and autocomplete
+  const selected: Cities = selectedTZ;
+
   // Destructuring timeZone and "*" from the URL.
   // The URL is in the format timeZone/*, so we need both the timeZone and the the "rest" part
   // to ensure autocomplete we give them the type of strings.
@@ -33,13 +30,11 @@ function DigitalClockPage() {
     timeZone: string;
     "*": string;
   }>();
+
   // Combine the URL into a single variable.
   // If rest has a value, set fullTimeZone to timeZone/rest. if not just set it to timezone
   const fullTimeZone = rest ? `${timeZone}/${rest}` : timeZone;
-  // Function to open/close settings.
-  const handleChangeColor = () => {
-    setIsOpen(!isOpen);
-  };
+
   const cities: Cities[] = useLoaderData().cities;
 
   // Using the timezone from the url and try to find the whole object.
@@ -51,59 +46,48 @@ function DigitalClockPage() {
       setState("selectedTZ", city);
     }
   }, [fullTimeZone, selectedTZ, setState, cities]);
+  useBackground(selected.city, selected.defaultpic);
+  //  Button text. (For Digital / Analog)
+  const toggleDigitalText = isDigital ? "Show Analog" : "Show Digital";
 
-  // Array of all color settings.
-  const colorSettings = [
-    { key: "textColor", label: "Text Color", value: textColor, type: "color" },
-    {
-      key: "borderColor",
-      label: "Border Color",
-      value: borderColor,
-      type: "color",
-    },
-    {
-      key: "backgroundColor",
-      label: "Background color",
-      value: backgroundColor,
-      type: "color",
-    },
-  ];
+  // Function to open/close settings.
+  const handleChangeColor = (): void => {
+    setIsOpen(!isOpen);
+  };
 
-  const toggleHourText = twelveHour ? "Switch to 24-hour" : "Switch to 12-hour";
+  // Function to handle Digital/Analog clock.
+  const handleIsDigital = (): void => setState("isDigital", !isDigital);
 
   return (
-    <>
-      <section>
-        <Button
-          text={`${isDigital ? "Show Analog" : "Show Digital"}`}
-          onClick={() => setState("isDigital", !isDigital)}
-        />
-        <Button onClick={handleChangeColor} text="Settings" />
-        {isOpen ? (
-          <>
-            {colorSettings.map((c) => (
-              <Input
-                key={c.key}
-                label={c.label}
-                value={c.value}
-                type={c.type}
-                onChange={(color) => setState(c.key, color)}
-              />
-            ))}
-            <Button
-              text={toggleHourText}
-              onClick={() => setState("twelveHour", !twelveHour)}
-            />
-            <Button
-              text="Reset"
-              onClick={() => setState("twelveHour", undefined)}
-            />
-          </>
-        ) : null}
-      </section>
-      <Clock />
-    </>
+    <main className="clockpage-container">
+      <Button text={toggleDigitalText} onClick={handleIsDigital} />
+      <Button onClick={handleChangeColor} text="Settings" />
+      {isOpen ? <Settings /> : null}
+
+      {
+        <>
+          <section
+            className={`${
+              isDigital ? "digitalclock-container" : "analogclock-container"
+            }`}
+          >
+            {isDigital ? <DigitalClock /> : <AnalogClock />}
+          </section>
+          {selected.countryCode !== undefined && (
+            <>
+              <section className="text-container">
+                <p>{`${selected.city} - ${selected?.country}`}</p>
+                <img
+                  src={`/flags/${selected.countryCode}.svg`}
+                  alt={`${selected.city} Flag`}
+                />
+              </section>
+            </>
+          )}
+        </>
+      }
+    </main>
   );
 }
 
-export default DigitalClockPage;
+export default ClockPage;

@@ -1,4 +1,4 @@
-import React from "react";
+import { type JSX } from "react";
 
 interface InputProps {
   label: string;
@@ -7,7 +7,12 @@ interface InputProps {
   onChange: (value: string) => void;
 }
 
-export default function Input({ label, value, type, onChange }: InputProps) {
+export default function Input({
+  label,
+  value,
+  type,
+  onChange,
+}: InputProps): JSX.Element {
   return (
     <label>
       {label}

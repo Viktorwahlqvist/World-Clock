@@ -9,6 +9,7 @@ interface Route {
   element: JSX.Element;
   path: string;
   index: number;
+  loader?: Function;
 }
 
 export default[ 

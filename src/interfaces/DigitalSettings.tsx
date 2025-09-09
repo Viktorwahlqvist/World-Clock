@@ -5,9 +5,8 @@ export type ClockColor = RGB | RGBA | HEX;
 
 export type TextColor = ClockColor;
 
-export default interface AnalogSettings {
-  secondHand: ClockColor;
-  hourAndMinuteHand: ClockColor;
-  hourAndMinuteLines: ClockColor;
-  numberOfTheClockFace: ClockColor;
+export default interface DigitalSettings {
+  textColor: ClockColor;
+  borderColor: ClockColor;
+  backgroundColor: ClockColor;
 }

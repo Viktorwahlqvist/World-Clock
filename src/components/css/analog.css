@@ -1,0 +1,31 @@
+/* Change able Digital Clock varibles. */
+.react-clock__face {
+  border: 5px solid var(--clock-border, black);
+  background-color: var(--clock-bg, white);
+}
+
+/* Main clock hands (hour and minute hands) */
+.react-clock__hand__body {
+  background-color: var(
+    --clock-hand,
+    black
+  ); /* Color of hour and minute hands */
+}
+
+/* Second hand of the clock */
+.react-clock__second-hand__body {
+  background-color: var(
+    --clock-second-hand,
+    red
+  ); /* Color of the second hand */
+}
+
+/* Clock marks (lines for hours and minutes) */
+.react-clock__mark__body {
+  background-color: var(--clock-mark, black); /* Color of hour/minute markers */
+}
+
+/* Numbers on the clock face */
+.react-clock__mark__number {
+  color: var(--clock-text, black); /* Color of the numbers on the clock */
+}

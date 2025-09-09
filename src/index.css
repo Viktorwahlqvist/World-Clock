@@ -1,3 +1,43 @@
+/* Reset lite grundläggande marginal och padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Gör att html, body och root fyller hela skärmen */
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  font-family: Arial, sans-serif; /* standard font */
+  background-color: #f5f5f5; /* valfri bakgrundsfärg */
+}
+
+/* Standard inställning för länkar */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Standard inställning för bilder */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Om du vill att huvudcontainern fyller hela sidan */
+.main-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; /* vertikal layout som standard */
+}
+
 img {
   width: 30px;
+}
+
+.digital-time {
+  color: var(--digital-text, black);
 }

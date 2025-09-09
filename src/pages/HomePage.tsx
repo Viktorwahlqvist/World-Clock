@@ -1,8 +1,11 @@
-import React from "react";
+import React, { type JSX } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useStateContext } from "../utils/useStateObj";
 import type Cities from "../interfaces/Cities";
 import citiesLoader from "../utils/citiesLoader";
+import "./css/homepage.css";
+import Button from "../components/Button";
+import { getFromStorage } from "../utils/localStorageHelper";
 
 // route definition
 HomePage.route = {
@@ -11,9 +14,13 @@ HomePage.route = {
   loader: citiesLoader,
 };
 
-function HomePage() {
-  // Type the JSON data as an array of Cities
-  const cities = useLoaderData().cities as Cities[];
+function HomePage(): JSX.Element {
+  const localTimeZones = getFromStorage<Cities>("timeZone");
+  const loaderCities = useLoaderData().cities as Cities[];
+
+  const cities: Cities[] = [...localTimeZones, ...loaderCities];
+  console.log(cities);
+
   const setState = useStateContext()[1];
   const navigate = useNavigate();
 
@@ -28,15 +35,28 @@ function HomePage() {
       navigate(`/clock/${selected.timeZone}`);
     }
   };
+
+  const handleClick = () => navigate(`/add`);
   return (
-    <>
-      <select onChange={handleOnSelect}>
-        <option value="">Choose City</option>
-        {cities.map((t: Cities, i: number) => (
-          <option key={i} value={t.city}>{`${t.city} - ${t.country}`}</option>
-        ))}
-      </select>
-    </>
+    <main className="homepage-container">
+      <section className="content-container">
+        <select className="select-timezone" onChange={handleOnSelect}>
+          <option value="">Choose City</option>
+          {cities.map((t: Cities, i: number) => (
+            <option key={i} value={t.city}>{`${t.city} - ${t.country}`}</option>
+          ))}
+        </select>
+        <p className="homepage-para">
+          Choose a city to check the time. Don’t see your city? Add it easily
+          and keep track of it here.
+        </p>
+        <Button
+          className="Add-timezone-btn"
+          text="Add new Timezone"
+          onClick={handleClick}
+        />
+      </section>
+    </main>
   );
 }
 

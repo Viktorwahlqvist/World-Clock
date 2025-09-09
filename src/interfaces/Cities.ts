@@ -5,6 +5,7 @@ export default interface Cities {
     country : string,
     countryCode: string,
     timeZone: string,
-    hour12: boolean
+    hour12?: boolean,
+    defaultpic?: boolean
 
 }
