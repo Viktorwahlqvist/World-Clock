@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export default function useClock(
   timeZone: string,
   is12HourPreferred: boolean | undefined,
-  hour12: boolean
+  hour12: boolean | undefined
 ) : string {
   const [time, setTime] = useState("");
   // Update the time every second using the selected timezone.

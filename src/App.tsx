@@ -14,6 +14,7 @@ function App() {
     hourAndMinuteHand: "#000000",
     hourAndMinuteLines: "#000000",
   });
+
   return <Outlet context={stateAndSetter} />;
 }
 

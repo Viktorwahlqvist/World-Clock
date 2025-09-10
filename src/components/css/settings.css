@@ -1,5 +1,22 @@
 .settings-container {
+  padding: 1rem;
+  border: 3px solid black;
+  position: fixed;
+  left: 20%;
+  transform: translate(-20%);
   display: flex;
+  gap: 5px;
   flex-direction: column;
   align-items: flex-start;
+  align-content: center;
+  width: fit-content;
+  background-color: rgba(255, 255, 255, 0.5);
+
+  .button-settings-panel {
+    display: flex;
+    align-items: space-between;
+  }
+
+  .hour-button {
+  }
 }

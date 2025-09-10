@@ -4,6 +4,7 @@ interface InputProps {
   label: string;
   type: string;
   value: string;
+  className?: string;
   onChange: (value: string) => void;
 }
 
@@ -12,6 +13,7 @@ export default function Input({
   value,
   type,
   onChange,
+  className,
 }: InputProps): JSX.Element {
   return (
     <label>
@@ -19,6 +21,7 @@ export default function Input({
       <input
         type={type}
         value={value}
+        className={className}
         onChange={(e) => onChange(e.target.value)}
       />
     </label>

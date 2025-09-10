@@ -1,9 +1,9 @@
 import { useState, type JSX } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import { saveToLocal } from "../utils/localStorageHelper";
+import { saveToLocal } from "../utils/useLocalStorageHelper";
 import { useNavigate } from "react-router-dom";
-
+import "./css/add-timezone.css";
 // route definition
 AddTimeZonePage.route = {
   path: "/add",
@@ -37,7 +37,7 @@ function AddTimeZonePage(): JSX.Element {
         timeZone,
         defaultpic: true,
       });
-      navigate(`/clock/${timeZone}`);
+      navigate(`/`);
     } else {
       setNotvalid(
         `${timeZone} is not a valid Timezone try again. the correct format is "Europe/Stockholm`
@@ -46,34 +46,42 @@ function AddTimeZonePage(): JSX.Element {
   }
 
   return (
-    <>
-      <Input
-        label="Timezone"
-        value={timeZone}
-        onChange={handleOnChangeTimeZone}
-        type="text"
-      />
-      <Input
-        label="Country code"
-        value={countryCode}
-        onChange={handleOnChangeCountryCode}
-        type="text"
-      />
-      <Input
-        label="City"
-        value={city}
-        onChange={handleOnChangeCity}
-        type="text"
-      />
-      <Input
-        label="Country"
-        value={country}
-        onChange={handleOnChangeCountry}
-        type="text"
-      />
-      <Button text="Add Timezone" onClick={handleOnSubmit} />
-      {notValid ? notValid : null}
-    </>
+    <main className="Add-timezone-container">
+      <section className="input-container">
+        <Input
+          label="Timezone"
+          value={timeZone}
+          onChange={handleOnChangeTimeZone}
+          type="text"
+        />
+
+        <Input
+          label="Country code"
+          value={countryCode}
+          onChange={handleOnChangeCountryCode}
+          type="text"
+        />
+        <Input
+          label="City"
+          value={city}
+          onChange={handleOnChangeCity}
+          type="text"
+        />
+        <Input
+          label="Country"
+          value={country}
+          onChange={handleOnChangeCountry}
+          type="text"
+        />
+
+        <Button
+          className="add-button"
+          text="Add Timezone"
+          onClick={handleOnSubmit}
+        />
+        {notValid ? <p className="error-msg"> {notValid}</p> : null}
+      </section>
+    </main>
   );
 }
 

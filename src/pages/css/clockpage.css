@@ -7,38 +7,60 @@
   background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
-}
-.analogclock-container {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%);
+
+  .digitalclock-container {
+    min-width: 300px;
+    font-family: "Irish Grover", cursive;
+    font-size: 4rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    border-radius: 10px;
+    border: 1px solid black;
+  }
+  .text-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    font-size: 2rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 0.75rem;
+    border-radius: 10px;
+    border: 1px solid black;
+  }
+
+  .button-container {
+    margin-left: 2.5%;
+    display: flex;
+    gap: 10px;
+    .is-Digital-Button,
+    .settings-button {
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.5);
+      border: 1px solid black;
+      color: black;
+      border-radius: 5px;
+      margin-top: 3%;
+      padding: 0.75rem 1.25rem 0.75rem 1.25rem;
+      font-size: 1rem;
+    }
+  }
+  .Clock-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    height: 85%;
+    gap: 30px;
+  }
 }
 
-.digitalclock-container {
-  min-width: 300px;
-  font-family: "Irish Grover", cursive;
-  font-size: 4rem;
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 0.5rem 2rem 0.5rem 2rem;
-  border-radius: 10px;
-  border: 1px solid black;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.text-container {
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%);
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  font-size: 2rem;
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 0.75rem;
-  border-radius: 10px;
-  border: 1px solid black;
+@media screen and (max-width: 600px) {
+  .clockpage-container {
+    .text-container {
+      width: 80%;
+      font-size: 1.2rem;
+    }
+  }
 }

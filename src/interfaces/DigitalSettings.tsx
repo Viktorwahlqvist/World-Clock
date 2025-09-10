@@ -7,6 +7,4 @@ export type TextColor = ClockColor;
 
 export default interface DigitalSettings {
   textColor: ClockColor;
-  borderColor: ClockColor;
-  backgroundColor: ClockColor;
 }

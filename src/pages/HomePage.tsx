@@ -5,7 +5,7 @@ import type Cities from "../interfaces/Cities";
 import citiesLoader from "../utils/citiesLoader";
 import "./css/homepage.css";
 import Button from "../components/Button";
-import { getFromStorage } from "../utils/localStorageHelper";
+import { getFromStorage } from "../utils/useLocalStorageHelper";
 
 // route definition
 HomePage.route = {
@@ -19,7 +19,6 @@ function HomePage(): JSX.Element {
   const loaderCities = useLoaderData().cities as Cities[];
 
   const cities: Cities[] = [...localTimeZones, ...loaderCities];
-  console.log(cities);
 
   const setState = useStateContext()[1];
   const navigate = useNavigate();
@@ -46,15 +45,17 @@ function HomePage(): JSX.Element {
             <option key={i} value={t.city}>{`${t.city} - ${t.country}`}</option>
           ))}
         </select>
-        <p className="homepage-para">
-          Choose a city to check the time. Don’t see your city? Add it easily
-          and keep track of it here.
-        </p>
-        <Button
-          className="Add-timezone-btn"
-          text="Add new Timezone"
-          onClick={handleClick}
-        />
+        <section className="new-timezone-container">
+          <p className="homepage-para">
+            Choose a city to check the time. Don’t see your city? Add it easily
+            and keep track of it here.
+          </p>
+          <Button
+            className="Add-timezone-btn"
+            text="Add new Timezone"
+            onClick={handleClick}
+          />
+        </section>
       </section>
     </main>
   );

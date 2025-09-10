@@ -84,6 +84,7 @@ export default function Settings(): JSX.Element {
           {isDigital
             ? digitalColorSettings.map((c) => (
                 <Input
+                  className="digital-Color"
                   key={c.key}
                   label={c.label}
                   value={c.value}
@@ -105,8 +106,14 @@ export default function Settings(): JSX.Element {
                 />
               ))}
 
-          <Button text={toggleHourText} onClick={handleToggleHour} />
-          <Button text="Reset" onClick={handleReset} />
+          <section className="button-settings-panel">
+            <Button
+              className="hour-button"
+              text={toggleHourText}
+              onClick={handleToggleHour}
+            />
+            <Button text="Reset" onClick={handleReset} />
+          </section>
         </>
       }
     </section>

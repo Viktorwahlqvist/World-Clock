@@ -1,0 +1,75 @@
+.Add-timezone-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  font-family: "Playfair Display", serif;
+  overflow: hidden;
+  margin-inline: auto;
+
+  background-image: url("/background/homepage.jpg");
+
+  background-size: cover, 100% 100%;
+  background-position: top center, bottom left;
+  background-repeat: no-repeat, no-repeat;
+
+  .error-msg {
+    font-size: 1rem;
+    color: red;
+  }
+
+  .input-container {
+    padding-top: 5%;
+    width: 50%;
+
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+
+    label {
+      margin-top: 1rem;
+      width: 50%;
+      font-size: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    input {
+      padding: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid black;
+    }
+
+    .add-button {
+      width: 40%;
+      cursor: pointer;
+      margin-left: 4%;
+      background-color: transparent;
+      border: 1px solid white;
+      color: white;
+      border-radius: 5px;
+      margin-top: 3%;
+      padding: 0.75rem 1.25rem 0.75rem 1.25rem;
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .Add-timezone-container {
+    .input-container {
+      width: 80%;
+      font-size: 1.75rem;
+    }
+    input {
+      width: 250px;
+    }
+
+    .error-msg {
+      overflow-wrap: break-word;
+      white-space: normal;
+    }
+  }
+}

@@ -8,7 +8,7 @@ import HomePage from "./pages/HomePage";
 interface Route {
   element: JSX.Element;
   path: string;
-  index: number;
+  index?: number;
   loader?: Function;
 }
 
