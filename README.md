@@ -4,16 +4,16 @@
 
 - Här har jag definierat hur ett timezone-objekt ska vara strukturerat. Jag kallar det Cities, så här kan jag ange att city i objektet ska vara en sträng.
   När jag sedan hämtar data från min JSON-fil med fetch och skriver as Cities[], säkerställer jag att formatet som kommer från JSON-filen kommer se ut så.
-  `ts
-    export default interface Cities {
-    city: string,
-    country: string,
-    countryCode: string,
-    timeZone: string,
-    hour12: boolean,
-    defaultpic?: boolean
-    }
-    `
+  ```ts
+  export default interface Cities {
+    city: string;
+    country: string;
+    countryCode: string;
+    timeZone: string;
+    hour12: boolean;
+    defaultpic?: boolean;
+  }
+  ```
 - På min DigitalClock-komponent så definierar jag att objektet selected ska vara av typen Cities. Detta gör att när jag sedan ska använda mig av selected som t.ex. selected.timeZone eller selected.city. När jag skriver selected får jag förslag via autocompletion av editorn och även felvarningar om man skriver fel, vilket minskar risken för misstag.
 
 ### Beskriva hur TypeScript transpileras till JavaScript i ditt projekt
