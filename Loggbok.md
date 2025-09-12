@@ -1,4 +1,4 @@
-### Hur tänkte du när du skissade gränssnitt? Gärna länk till skisser.
+# Hur tänkte du när du skissade gränssnitt? Gärna länk till skisser.
 
 - Jag tänkte direkt att jag ville ha en bild på staden som hör till tiden man tittar på, och eftersom jag ville ha det, valde jag också att inte bara ha en färg på "homePage". Jag valde istället att ha en bild på en klocka.
   Jag har valt att inte ha för mycket på sidan, jag vill att den ska vara tydlig och att det inte ska hända för mycket som kan skapa förvirring hos användaren.
@@ -6,7 +6,7 @@
 
 länkar till trello och figma är: -[Trello](https://trello.com/b/Zp7DxCui/world-clock) -[Figma](https://www.figma.com/design/bkUJNVipQdHoVAu5mqhksR/World-clock?node-id=0-1&t=fn5OddQHLKIM27de-1)
 
-### Hur har valt att dela upp din applikation:
+# Hur har valt att dela upp din applikation:
 
 ## Vilka komponenter?
 
@@ -24,7 +24,7 @@ länkar till trello och figma är: -[Trello](https://trello.com/b/Zp7DxCui/world
 
 - Mitt val av struktur är att jag har försökt ha det så som jag uppfattat från föregående år hur man ska strukturera. Pages är sidorna som ska renderas, components kan vara återanvändbar kod men har även använd components för att lägga sånt som jag vill ha i en literals dvs visa antingen analog eller digital osv, det gör även att filerna blir inte så överflödiga. Funktioner som inte returnerar jsx och som kan vara återanvändbar blir en egen hook för att lätt kunna återanvända.
 
-### Hur gick tillväga när du använde Git, samt när du testade att programmet faktiskt fungerar som det ska.
+## Hur gick tillväga när du använde Git, samt när du testade att programmet faktiskt fungerar som det ska.
 
 - Jag gjorde minst en push varje dag, när jag kände att det var mycket ändrat så pushade jag.
   Hade nog kunnat göra mer pushes för att vara säker på att ingen kod blir förlorad samt lättare att gå tillbaka.
