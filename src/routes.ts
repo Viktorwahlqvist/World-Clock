@@ -1,4 +1,3 @@
-
 import { createElement } from "react";
 import type { JSX } from "react";
 import AddTimeZonePage from "./pages/AddTimeZonePage";
@@ -12,10 +11,6 @@ interface Route {
   loader?: Function;
 }
 
-export default[ 
-  HomePage,
-  AddTimeZonePage,
-  ClockPage
-]
-.map(x => (({element: createElement(x), ...x.route}) as Route))
-.sort ((a, b) => (a.index || 0) - (b.index || 0))
+export default [HomePage, AddTimeZonePage, ClockPage]
+  .map((x) => ({ element: createElement(x), ...x.route } as Route))
+  .sort((a, b) => (a.index || 0) - (b.index || 0));

@@ -29,3 +29,13 @@
 .react-clock__mark__number {
   color: var(--clock-text, black); /* Color of the numbers on the clock */
 }
+
+.loading-text {
+  min-width: 300px;
+  font-family: "Irish Grover", cursive;
+  font-size: 4rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0.5rem 2rem 0.5rem 2rem;
+  border-radius: 10px;
+  border: 1px solid black;
+}

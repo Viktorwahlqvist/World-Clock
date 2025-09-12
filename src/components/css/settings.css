@@ -1,22 +1,50 @@
 .settings-container {
-  padding: 1rem;
   border: 3px solid black;
   position: fixed;
-  left: 20%;
-  transform: translate(-20%);
+  top: 110px;
+  left: 260px;
   display: flex;
-  gap: 5px;
+  gap: 10px;
   flex-direction: column;
   align-items: flex-start;
   align-content: center;
-  width: fit-content;
-  background-color: rgba(255, 255, 255, 0.5);
+  padding: 20px;
 
-  .button-settings-panel {
+  background-color: rgba(30, 30, 30, 0.7);
+
+  :hover {
+    text-decoration: underline;
+  }
+
+  label {
+    color: #fff;
+    cursor: pointer;
     display: flex;
-    align-items: space-between;
+    gap: 30px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
   }
 
   .hour-button {
+    background-color: #4caf50;
+    color: white;
+    border: 1px solid white;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .hour-button:hover {
+    background-color: #4caf4fb9;
+  }
+  input[type="color" i] {
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .settings-container {
+    top: 60px;
+    left: 50px;
   }
 }

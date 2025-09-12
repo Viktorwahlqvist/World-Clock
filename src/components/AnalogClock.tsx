@@ -30,5 +30,13 @@ export default function AnalogClock(): JSX.Element {
     root.style.setProperty("--clock-hand", hourAndMinuteHand);
     root.style.setProperty("--clock-mark", hourAndMinuteLines);
   }, [secondHand, hourAndMinuteHand, hourAndMinuteLines, numberOfTheClockFace]);
-  return <>{time ? <Clock value={time} size={240} /> : <p>Loading...</p>}</>;
+  return (
+    <>
+      {time ? (
+        <Clock value={time} size={240} />
+      ) : (
+        <p className="loading-text">Loading...</p>
+      )}
+    </>
+  );
 }

@@ -6,6 +6,7 @@ import Input from "./Input";
 import type DigitalSettings from "../interfaces/DigitalSettings";
 import type { JSX } from "react";
 import "./css/settings.css";
+import { saveToLocalColor } from "../utils/useLocalStorageHelper";
 
 export default function Settings(): JSX.Element {
   const [
@@ -63,20 +64,24 @@ export default function Settings(): JSX.Element {
   // function that will run when user click on 12/24h button.
   const handleToggleHour = (): void =>
     setState("is12hPreferred", !is12hPreferred);
-  // If user click reset, the preffered format will reset to null.
-  const handleReset = (): void => setState("is12hPreferred", null);
 
   // Function to handle the color settings, ClockColor type only accepts  `#${string}` | `rgb(${number}, ${number}, ${number})`
   // digitalColorSettingsKey is the field of the color setting, and with keyof we can make an union so its gonna either be textColor, borderColor or backgroundColor.
   const handleDigitalColorSettingsChange = (
     color: ClockColor,
     colorFields: { key: keyof DigitalSettings }
-  ): void => setState(colorFields.key, color);
+  ): void => {
+    setState(colorFields.key, color);
+    saveToLocalColor<ClockColor>(colorFields.key, color);
+  };
 
   const handleAnalogColorSettingsChange = (
     color: ClockColor,
     colorFields: { key: keyof AnalogSettings }
-  ): void => setState(colorFields.key, color);
+  ): void => {
+    setState(colorFields.key, color);
+    saveToLocalColor<ClockColor>(colorFields.key, color);
+  };
   return (
     <section className="settings-container">
       {
@@ -106,14 +111,13 @@ export default function Settings(): JSX.Element {
                 />
               ))}
 
-          <section className="button-settings-panel">
+          {isDigital ? (
             <Button
               className="hour-button"
               text={toggleHourText}
               onClick={handleToggleHour}
             />
-            <Button text="Reset" onClick={handleReset} />
-          </section>
+          ) : null}
         </>
       }
     </section>

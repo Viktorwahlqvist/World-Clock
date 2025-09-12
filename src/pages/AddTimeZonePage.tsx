@@ -1,9 +1,10 @@
 import { useState, type JSX } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import { saveToLocal } from "../utils/useLocalStorageHelper";
+import { saveToLocalTimeZone } from "../utils/useLocalStorageHelper";
 import { useNavigate } from "react-router-dom";
 import "./css/add-timezone.css";
+import type { newTimeZone, TimeZone } from "../interfaces/Cities";
 // route definition
 AddTimeZonePage.route = {
   path: "/add",
@@ -24,13 +25,14 @@ function AddTimeZonePage(): JSX.Element {
   const handleOnChangeCity = (value: string): void => setCity(value);
   const handleOnChangeCountry = (value: string): void => setCountry(value);
   function handleOnSubmit(): void {
-    console.log(timeZone);
-    // För validering, hämtar alla tidsoner sen kollar om user input finns med.
-    const timeZones = Intl.supportedValuesOf("timeZone");
-    console.log(timeZones);
+    // safe guard to check if the timeZone exists.
+    const isValidTimeZone = (timeZone: string): timeZone is TimeZone => {
+      const timeZones = Intl.supportedValuesOf("timeZone");
+      return timeZones.includes(timeZone);
+    };
 
-    if (timeZones.includes(timeZone)) {
-      saveToLocal("timeZone", {
+    if (isValidTimeZone(timeZone)) {
+      saveToLocalTimeZone<newTimeZone>("timeZone", {
         city,
         country,
         countryCode,

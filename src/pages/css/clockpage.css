@@ -44,6 +44,10 @@
       padding: 0.75rem 1.25rem 0.75rem 1.25rem;
       font-size: 1rem;
     }
+    .is-Digital-Button:hover,
+    .settings-button:hover {
+      background-color: rgba(255, 255, 255, 0.7);
+    }
   }
   .Clock-container {
     display: flex;

@@ -1,7 +1,7 @@
 import { useEffect, useState, type JSX } from "react";
 import Button from "../components/Button";
 import { useStateContext } from "../utils/useStateObj";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import type Cities from "../interfaces/Cities";
 import citiesLoader from "../utils/citiesLoader";
 import DigitalClock from "../components/DigitalClock";
@@ -20,6 +20,7 @@ ClockPage.route = {
 function ClockPage(): JSX.Element {
   const localTimeZones = getFromStorage<Cities>("timeZone");
   const loaderCities = useLoaderData().cities as Cities[];
+  const navigate = useNavigate();
 
   const [{ selectedTZ, isDigital }, setState] = useStateContext();
   const [isOpen, setIsOpen] = useState(false);
@@ -60,6 +61,11 @@ function ClockPage(): JSX.Element {
   // Function to handle Digital/Analog clock.
   const handleIsDigital = (): void => setState("isDigital", !isDigital);
 
+  // Function to handle click "Home"
+  const handleClickHome = (): void => {
+    navigate("/");
+  };
+
   return (
     <main className="clockpage-container">
       <section className="button-container">
@@ -72,6 +78,11 @@ function ClockPage(): JSX.Element {
           className="settings-button"
           onClick={handleChangeColor}
           text="Settings"
+        />
+        <Button
+          className="settings-button"
+          text="Home"
+          onClick={handleClickHome}
         />
       </section>
 
